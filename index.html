@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.min.css" />
+	<title>Heal Lab</title>
+</head>
+
+<body>
+	<div class="modal modal-login hidden">
+	<div class="modal-body">
+		<div class="modal-body__header header-modal">
+			<h3 class="header-modal__title">Sign In</h3>
+			<button id="" class="header-modal__btn-close"><img src="img/button-close-icon.svg" alt="close"></button>
+		</div>
+		<form id="form-login" class="modal-body__form form-modal">
+			<label for="email" class="form-modal__label">Email <br>
+			<input class="input input__email" type="email" name="email" placeholder="Enter your email">
+			<div class="input__email-error hidden"><img src="img/error-input.svg" alt="error-input">Incorrect email</div>
+			</label>
+			<label for="password" class="form-modal__label password__label">Password <br>
+			<input class="input input__password" type="password" name="password" placeholder="Enter your password">
+			<span class="password__btn eye-grey"><img src="img/pasw-eye-grey.svg" alt="pasw-eye-grey"></span>
+			<span class="password__btn eye-blue"><img src="img/pasw-eye-blue.svg" alt="pasw-eye-grey"></span>
+			<div class="input__password-error hidden"><img src="img/error-input.svg" alt="error-input">Can`t be empty! Try again</div>
+			</label>
+			<button id="login-form-btn" type="button" class="button button-primary button-primary__login">Login</button>
+		</form>
+	</div>
+</div>
+</div>
+
+	<div class="modal create-visit hidden" id="visit-modal">
+	<div class="modal-body">
+		<div class="modal-body__header header-modal">
+			<h3 class="header-modal__title">Create visit</h3>
+			<button id="close-visit-modal"><img src="img/button-close-icon.svg" alt="close"></button>
+		</div>
+		<form class="modal-body__form form-modal" id="create-visit-card">
+			<div class="dropdown__visit">
+				<select name="doctor" id="doctor" class="dropdown">
+					<option value="select-doctor" disabled selected hidden>Select doctor</option>
+					<option value="Therapist">Therapist</option>
+					<option value="Cardiologist">Cardiologist</option>
+					<option value="Dentist">Dentist</option>
+				</select>
+				<select name="priority" id="priority" class="dropdown">
+					<option name="priority" id="" disabled selected hidden>Select priority</option>
+					<option name="priority" id="" class="dropdown__low" value="Low priority">Low priority</option>
+					<option name="priority" id="" class="dropdown__medium" value="Medium priority">Medium priority</option>
+					<option name="priority" id="" class="dropdown__high" value="High priority">High priority</option>
+				</select>
+			</div>
+			<div class="input__visit">
+				<div class="first-name">
+					<p class="form-modal__label">First Name*</p>
+					<input type="text" name="first-name" id="firstName" class="input input__visit" placeholder="Enter patient first name"
+						required>
+				</div>
+				<div class="last-name">
+					<p class="form-modal__label">Last Name*</p>
+					<input type="text" name="last-name" id="lastName" class="input input__visit" placeholder="Enter patient last name" required>
+				</div>
+			</div>
+			<label for="purpose" class="form-modal__label">Patient's visit purpose*</label>
+			<input type="text" id="purpose" placeholder="Enter visit purpose" class="input" required>
+			<label for="description" class="form-modal__label">Description</label>
+			<textarea name="description" id="description" class="input input__area" placeholder="Enter description here..."></textarea>
+			<div class="optional-inputs">
+
+			</div>
+			<button type="button" class="button button-primary button-primary__modal" id="create-visit">Create</button>
+		</form>
+	</div>
+</div>
+</div>
+	<div class="wrapper">
+		<header class="header">
+	<div class="container">
+		<nav class="header__nav">
+			<a class="header__logo" href="#"><img src="img/header-logo.svg" alt="header-logo"></a>
+			<button id="login-btn" class="button button-primary login-btn">
+				<img src="img/login_btn_logo.svg" alt="login-logo">
+				<span>Login</span>
+			</button>
+			<button id="create-visit-btn" class="button button-primary login-btn hidden">
+				<img src="img/create-visit-btn-logo.svg" alt="login-create-logo">
+				<span>Create visit</span>
+			</button>
+		</nav>
+	</div>
+</header>
+		<main class="container">
+	<section>
+		<div class="unauthorised">
+			<div class="unauthorise-block content-block ">
+				<h3 class="authorise-block__title">Unauthorised user</h3>
+				<p class="authorise-block__text">Log in to continue</p>
+			</div>
+		</div>
+
+		<div class="authorised">
+			<div class="filter content-block hidden">
+				<select name="priority" class="dropdown priority">
+					<option disabled selected hidden>Priority</option>
+					<option value="all" class="dropdown-all">Not used</option>
+					<option value="low priority" class="dropdown-low">Low priority</option>
+					<option value="medium priority" class="dropdown-medium">Medium priority</option>
+					<option value="high priority" class="dropdown-high">High priority</option>
+				</select>
+				<select name="status" class="dropdown status">
+					<option disabled selected hidden>Status</option>
+					<option value="all" class="status-all">Not used</option>
+					<option value="awaiting" class="status-awaiting">Awaiting</option>
+					<option value="done" class="status-done">Done</option>
+				</select>
+				<input type="text" class="input input__filter" placeholder="Enter visit description or purpose">
+			</div>
+			<div class="authorise-block content-block hidden">
+				<h3 class="authorise-block__title">The list is empty</h3>
+				<p class="authorise-block__text">Press create visit button to start</p>
+			</div>
+		</div>
+		<div class="content-block cards-section hidden">
+			<template id="card-template">
+				<div class="card-visit">
+					<div class="card-visit__header">
+						<div class="card-visit__info">
+							<div class="card-visit__status awaiting">Awaiting</div>
+							<p class="card-visit__id-text">Visit #<span class="card-visit__id"></span></p>
+						</div>
+						<div class="card-visit__buttons">
+							<button class="card-visit__btn-show button-secondary button" type="button">Show more</button>
+							<button class="card-visit__btn-edit" type="button"><img src="img/icon-button-edit.svg" alt="btn-edit"></button>
+							<button class="card-visit__btn-delete" type="button"><img src="img/icon-button-delete.svg" alt="btn-delete"></button>
+						</div>
+					</div>
+					<div class="card-visit__main">
+						<p class="card-visit__doctor input"></p>
+						<p class="card-visit__priority input"></p>
+						<p class="card-visit__title">First Name</p>
+						<p class="card-visit__title">Last Name</p>
+						<p class="card-visit__first-name input"></p>
+						<p class="card-visit__last-name input"></p>
+					</div>
+					<div class="card-visit__additional-info hidden">
+					</div>
+				</div>
+			</template>
+		</div>
+	</section>
+</main>
+		<footer class="footer">
+    <p class="footer__text">DAN IT Step project <br> 2023</p>
+</footer>
+	</div>
+	<script type="module" src="js/app.min.js"></script>
+</body>
+
+</html>
